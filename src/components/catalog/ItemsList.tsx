@@ -29,7 +29,7 @@ export default function ItemsList() {
     return (
         <div className="itemsList-wrapper">
             <div className="itemsList"> 
-                {productsData.map(apiData => <Item id={apiData.id} data={apiData}/>)}
+                {productsData.map(apiData => <Item key={apiData.id} data={apiData}/>)}
             </div>
             <button 
                 className="show-more-btn" 

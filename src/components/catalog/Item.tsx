@@ -2,7 +2,7 @@ import { useCartStore } from "../../store/useStore";
 import type { apiData } from "../../types/common";
 
 interface ItemProps {
-    id: string,
+    key: string,
     data: apiData
 }
 
