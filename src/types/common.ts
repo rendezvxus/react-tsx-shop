@@ -1,4 +1,5 @@
 export type apiData = {
+    id: string,
     title: string,
     description: string,
     price: number,
@@ -7,6 +8,7 @@ export type apiData = {
 }
 
 export type itemData = {
+    id: string,
     title: string,
     description: string,
     price: number,
@@ -19,4 +21,10 @@ export type category = {
     slug: String;
     name: String;
     url: String;
+}
+
+export type apiPayload = {
+    limit?: number,
+    skip?: number,
+    category?: category
 }

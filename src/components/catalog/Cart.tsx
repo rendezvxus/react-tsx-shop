@@ -1,4 +1,10 @@
-export default function Cart() {
+interface CartProps {
+    onCheckout: () => void;
+}
+
+export default function Cart(
+    { onCheckout } : CartProps
+) {
     return (
         <div className="cart">
             <div className="cart-header">
@@ -9,7 +15,11 @@ export default function Cart() {
             </div>
             <div className="cart-footer">
                 <p>Total: 0$</p>
-                <button className="cart-checkout-btn" type="button">
+                <button 
+                    className="cart-checkout-btn" 
+                    type="button"
+                    onClick={onCheckout}
+                >
                     CHECKOUT
                 </button>
             </div>
