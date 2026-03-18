@@ -1,7 +1,11 @@
+import { ItemsList, Cart, Filter } from "../catalog/index.ts"
+
 export default function Main() {
     return (
         <main>
-            <p>Main</p>
+            {/* <Filter /> */}
+            <ItemsList />
+            <Cart />
         </main>
     )    
 }
