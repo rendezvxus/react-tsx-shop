@@ -1,4 +1,4 @@
-import type { apiData, apiPayload, itemData } from "../../types/common"
+import type { apiPayload } from "../types/common"
 
 export function constructUrl(
     payload: apiPayload = {}

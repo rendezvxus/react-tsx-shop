@@ -1,3 +1,4 @@
+import { useCartStore } from "../../store/useStore";
 import type { apiData } from "../../types/common";
 
 interface ItemProps {
@@ -6,6 +7,10 @@ interface ItemProps {
 }
 
 export default function Item({ data }: ItemProps) {
+
+    const cartItems = useCartStore(state => state.items)
+    const addItem = useCartStore(state => state.addItem)
+
     return (
         <div className="item">
             <img className="item-img" src={data.images[0]} />
@@ -17,7 +22,14 @@ export default function Item({ data }: ItemProps) {
             </div>
             <div className="item-footer">
                 <h2>{data.price} $</h2>
-                <button className="item-add-to-cart" type="button">
+                <button
+                    className="item-add-to-cart" 
+                    type="button"
+                    onClick={() => {
+                        addItem({...data, amount: 1})
+                        console.log(cartItems)
+                    }}
+                    >
                     <img className="cart-img" src="/Cart.svg"/>
                 </button>
             </div>

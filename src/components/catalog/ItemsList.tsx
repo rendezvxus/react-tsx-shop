@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import type { apiData, apiPayload } from "../../types/common";
-import { constructUrl } from "../utils/apiUtils";
+import { constructUrl } from "../../utils/apiUtils";
 import Item from "./Item";
 
 export default function ItemsList() {

@@ -7,13 +7,7 @@ export type apiData = {
     category: category,
 }
 
-export type itemData = {
-    id: string,
-    title: string,
-    description: string,
-    price: number,
-    image: string,
-    category: category,
+export type itemData = apiData & {
     amount: number
 }
 
