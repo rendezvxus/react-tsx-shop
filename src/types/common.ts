@@ -4,7 +4,7 @@ export type apiData = {
     description: string,
     price: number,
     images: string[],
-    category: category,
+    category: string
 }
 
 export type itemData = apiData & {
@@ -20,5 +20,5 @@ export type category = {
 export type apiPayload = {
     limit?: number,
     skip?: number,
-    category?: category
+    category?: string
 }

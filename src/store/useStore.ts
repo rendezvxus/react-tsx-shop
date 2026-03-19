@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import type { category, itemData } from '../types/common'
+import type { apiData, category, itemData } from '../types/common'
 
 interface CartState {
     items: Array<itemData>,
@@ -12,6 +12,12 @@ interface FilterState {
     currentFilter: category,
     setCategories: (fArr: category[]) => void,
     setFilter: (f: category) => void
+}
+
+interface ItemState {
+    products: apiData[],
+    setProducts: (p: apiData[]) => void,
+    addProducts: (p: apiData[]) => void
 }
 
 export const useCartStore = create<CartState>((set) => ({
@@ -47,4 +53,12 @@ export const useFilterState = create<FilterState>((set) => ({
 
     setCategories: (fArr: Array<category>) => set({allCategories: [...fArr]}),
     setFilter: (f: category) => set({currentFilter: f})
+}))
+
+export const useProductState = create<ItemState>((set) => ({
+    products: [],
+    setProducts: (p: apiData[]) => set({ products: p }),
+    addProducts: (p: apiData[]) => set((state) => {
+        return {products: [...state.products, ...p]}
+    })
 }))

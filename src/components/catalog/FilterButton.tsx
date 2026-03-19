@@ -10,7 +10,6 @@ export default function FilterButton(
     { category }: FilterButtonProps
 ) {
     
-    const filter = useFilterState(state => state.currentFilter)
     const setFilter = useFilterState(state => state.setFilter)
 
     return (
