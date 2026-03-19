@@ -12,9 +12,9 @@ export type itemData = apiData & {
 }
 
 export type category = {
-    slug: String;
-    name: String;
-    url: String;
+    slug: string;
+    name: string;
+    url: string;
 }
 
 export type apiPayload = {
