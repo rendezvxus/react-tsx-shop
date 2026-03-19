@@ -1,4 +1,6 @@
 import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
+
 import type { apiData, category, itemData } from '../types/common'
 
 interface CartState {
@@ -20,32 +22,39 @@ interface ItemState {
     addProducts: (p: apiData[]) => void
 }
 
-export const useCartStore = create<CartState>((set) => ({
-    items: [],
-    addItem: (item: itemData) => set(state => {
+export const useCartStore = create<CartState>()(
+  persist(
+    (set) => ({
+      items: [],
+      addItem: (item: itemData) => set(state => {
         const isIndexed = state.items.find(i => i.id === item.id)
         if (isIndexed) {
-            return {
-                items: state.items.map(i => {
-                    if (i.id === item.id) {
-                        return ({...i, amount: i.amount += 1})
-                    }
-                    return i
-                })
-            }
+          return {
+            items: state.items.map(i => {
+              if (i.id === item.id) {
+                return { ...i, amount: i.amount += 1 }
+              }
+              return i
+            })
+          }
         }
         return {            
-            items: [
-                ...state.items,
-                item
-            ]
+          items: [
+            ...state.items,
+            item
+          ]
         }
+      }),
+      removeItem: (item: itemData) => set(state => ({
+        items: state.items.filter(stateitem => stateitem.id !== item.id)
+      })),
     }),
-
-    removeItem: (item: itemData) => set(state => (
-        { items: state.items.filter(stateitem => stateitem.id !== item.id) }
-    )),
-}))
+    {
+      name: 'cart-storage',
+      version: 1
+    }
+  )
+)
 
 export const useFilterState = create<FilterState>((set) => ({
     allCategories: [],
