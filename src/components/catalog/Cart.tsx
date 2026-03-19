@@ -1,15 +1,19 @@
 import { useCartStore } from "../../store/useStore";
 import CartItem from "./CartItem";
 
-const handleCheckout = () => {
-    alert("Checkout is clicked")
-}
-
 export default function Cart() {
 
     const items = useCartStore(state => state.items)
+    const removeItem = useCartStore(state => state.removeItem)
     
     const totalPrice = items.reduce((sum, item) => sum + (item.amount * item.price), 0).toFixed(2)
+
+    const handleCheckout = () => {
+        // some magic here (remove lol)
+        items.forEach(item => {
+            removeItem(item)
+        })
+    }
 
     return (
         <div className="cart">
