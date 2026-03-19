@@ -1,10 +1,15 @@
 import { create } from 'zustand'
-import type { itemData } from '../types/common'
+import type { category, itemData, } from '../types/common'
 
 interface CartState {
     items: Array<itemData>,
     addItem: (item: itemData) => void,
     removeItem: (item: itemData) => void
+}
+
+interface FilterState {
+    filter: category,
+    updateFilter: (f: category) => void
 }
 
 export const useCartStore = create<CartState>((set) => ({
@@ -32,4 +37,9 @@ export const useCartStore = create<CartState>((set) => ({
     removeItem: (item: itemData) => set(state => (
         { items: state.items.filter(stateitem => stateitem.id !== item.id) }
     )),
+}))
+
+export const useFilterState = create<FilterState>((set) => ({
+    filter: {} as category,
+    updateFilter: (f: category) => set({filter: f})
 }))
